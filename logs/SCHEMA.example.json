@@ -1,0 +1,64 @@
+{
+  "_comment": "STRUCTURE REFERENCE ONLY. Placeholder numbers, not a real capture. Generate real ledgers with: node scripts/capture-logs.mjs",
+  "schema": "talons-observatory.ledger.v1",
+  "exportedAt": "REPLACED_AT_RUNTIME",
+  "count": 4,
+  "entries": [
+    {
+      "id": "string",
+      "ts": 0,
+      "actor": "observatory.scan",
+      "symbol": "UNIVERSE",
+      "assetClass": "crypto",
+      "phase": "observe",
+      "input": { "request": "full market scan", "quote": "USDT" },
+      "output": { "pairs": 0, "topByVolume": ["BTCUSDT", "ETHUSDT"] },
+      "source": "bitget-spot-v2"
+    },
+    {
+      "id": "string",
+      "ts": 0,
+      "actor": "observatory.scan",
+      "symbol": "BTCUSDT",
+      "assetClass": "crypto",
+      "phase": "observe",
+      "input": { "request": "market snapshot", "symbol": "BTCUSDT" },
+      "output": {
+        "price": 0,
+        "change24h": 0,
+        "high24h": 0,
+        "low24h": 0,
+        "volume24h": 0,
+        "candles": 200
+      },
+      "source": "bitget-spot-v2"
+    },
+    {
+      "id": "string",
+      "ts": 0,
+      "actor": "observatory.score",
+      "symbol": "BTCUSDT",
+      "assetClass": "crypto",
+      "phase": "evaluate",
+      "input": { "price": 0, "change24h": 0, "rsi": 0 },
+      "output": {
+        "side": "LONG | SHORT | FLAT",
+        "score": 0,
+        "confidence": 0,
+        "factors": { "trend": 0, "mom": 0, "rsi": 0, "vol": 0, "range": 0 }
+      },
+      "source": "observatory.score-engine"
+    },
+    {
+      "id": "string",
+      "ts": 0,
+      "actor": "bgc.order",
+      "symbol": "BTCUSDT",
+      "assetClass": "crypto",
+      "phase": "execute",
+      "input": { "side": "LONG", "score": 0, "intent": "open long on BTCUSDT" },
+      "output": { "simulated": true, "status": "dry-run, no order sent", "ref": "string" },
+      "source": "observatory.dry-run"
+    }
+  ]
+}

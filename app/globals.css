@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #0a0e16;
+  /* Observatory atmosphere: a faint grid lattice plus a soft top glow. One
+     signature ambient layer, kept low contrast so data stays the focus. */
+  background-image:
+    radial-gradient(1200px 480px at 50% -180px, rgba(232, 185, 49, 0.06), transparent 70%),
+    linear-gradient(rgba(28, 39, 56, 0.35) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(28, 39, 56, 0.35) 1px, transparent 1px);
+  background-size: 100% 100%, 44px 44px, 44px 44px;
+  color: #c7d2e0;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+::selection {
+  background: rgba(232, 185, 49, 0.28);
+  color: #fff;
+}
+
+/* scrollbars */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #243348;
+  border-radius: 0;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+.live-dot {
+  animation: blink 1.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .live-dot {
+    animation: none;
+  }
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
